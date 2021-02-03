@@ -18,7 +18,10 @@ import { UserService } from './user/user.service';
   imports: [
 
     GraphQLModule.forRoot({
-      cors:false,
+      cors:{
+        origin:"http://localhost:300",
+        credentials:true
+      },
       playground:true,
       introspection:true,
       include: [UserModule,PostsModule],
