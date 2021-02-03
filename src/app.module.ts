@@ -41,6 +41,7 @@ import { UserService } from './user/user.service';
       username: 'postgres',
       password: 'root',
       database: 'instagram-clone',
+      url:process.env.DATABASE_URL,
       entities: [User,FollowRequest,Follower,PostEntity],
       synchronize: true,
       
