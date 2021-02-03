@@ -15,6 +15,7 @@ export class AppController {
   
   @Post('/refresh-token')
   async refreshToken(@Req()req:Request,@Res()res:Response){
+    res.header('Access-Control-Allow-Origin',"*")
       const token=req.cookies.jid
       if (!token){
         res.send({success:false,accessToken:""})
