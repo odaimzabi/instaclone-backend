@@ -1,0 +1,83 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Follower {
+  id: Float!
+  username: String!
+}
+
+type FollowRequest {
+  id: Float!
+  from: String!
+  userId: String!
+}
+
+type User {
+  id: String!
+  username: String!
+  email: String!
+  password: String!
+  Followers: [Follower!]
+  Requests: [FollowRequest!]!
+}
+
+type PostEntity {
+  id: String!
+  creator: String!
+  details: String!
+  imgSrc: String!
+  createdAt: DateTime!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type PostsResponse {
+  posts: [PostEntity!]!
+  nextPage: Float!
+}
+
+type SearchProfileResponse {
+  user: User!
+  isFollowing: Boolean
+  isRequested: Boolean
+}
+
+type LoginResponse {
+  accessToken: String!
+  user: User!
+}
+
+type Query {
+  getUsers: [User!]
+  getUsersByTerm(term: String!): [User!]!
+  me: User
+  searchProfile(username: String!): SearchProfileResponse!
+  fetchPosts: [PostEntity!]
+  paginatePosts(page: Float!): PostsResponse
+}
+
+type Mutation {
+  clearUsers: Boolean!
+  login(password: String!, email: String!): LoginResponse!
+  sendFollowRequest(to: String!): FollowRequest
+  deleteRequest(id: Float!): Boolean!
+  acceptRequest(id: Float!): Boolean!
+  signUp(userDetails: UserData!): User!
+  editPost(details: String!, id: String!): Boolean!
+  deletePost(id: String!): Boolean!
+  createPost(imgSrc: String!, details: String!, creator: String!): PostEntity
+}
+
+input UserData {
+  email: String!
+  username: String!
+  password: String!
+}
+
+type Subscription {
+  followRequestSent: FollowRequest!
+}
