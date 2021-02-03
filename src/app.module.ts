@@ -19,8 +19,7 @@ import { UserService } from './user/user.service';
 
     GraphQLModule.forRoot({
       cors:false,
-      debug: process.env.NODE_ENV !== 'production',
-      playground: process.env.NODE_ENV !== 'production',
+      playground:true,
       introspection:true,
       include: [UserModule,PostsModule],
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
