@@ -29,7 +29,9 @@ import { UserService } from './user/user.service';
         onConnect:(connectionParams:any,ws,context)=>{
           console.log(connectionParams)
           return connectionParams
-        }
+        },
+        path:'/',
+        keepAlive:10000
       },
       context:({req,res,connection})=>({req,res,connection})
     }),
